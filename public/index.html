@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quotes server</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>Quotes server</h1>
+</header>
+<main>
+    <p id="quote-container">This is a simple text. Click the button to get a quote</p>
+    <p id="source-container"></p>
+    <button role="button" onclick="getQuote()">Get a quote</button>
+</main>
+
+<script>
+  function getQuote() {
+    fetch(`quote/`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById('quote-container').innerHTML = data.body;
+        document.getElementById('source-container').innerHTML = data.source;
+      });
+  }
+</script>
+</body>
+</html>
